@@ -1,8 +1,19 @@
 # NTU Introduction to Computer 2023 Fall Final Project - Assembler & VM Translator
 
-In this final project, I implemented projects 6 through 8 of the textbook, namely the Hack assembler and VM-to-Hack translator. I chose C++ as my programming language and opted for an object-oriented approach, not fully complying with the suggestions from the textbook.
+Author: B12902110 呂承諺 (100% contribution)
+
+For the full commit history of the programs in this project, see [my main nand2tetris repository](https://github.com/gpwaob92679/nand2tetris).
+
+## Abstract
+
+In this final project, I implemented projects 6 through 8 of the textbook, namely the Hack assembler and VM-to-Hack translator. I chose C++ as my programming language and opted for an object-oriented design approach, not fully complying with the suggestions from the textbook.
 
 I learned several software development tools through the process of doing this project. [CMake](https://cmake.org/), a cross-platform build system generator, is used to build this project, as it allows code to be compiled on various platforms with different compilers, and also simplifies testing and binary distribution. I chose [Abseil](https://github.com/abseil/abseil-cpp) as my support library, utilizing it's logging library, flags library and string utilities. For unit testing, [GoogleTest](https://github.com/google/googletest) is the framework of choice.
+
+Possible future improvements include:
+- Automated testing of the assembler
+- Produce better error and warning messages from the assembler and the VM translator
+- Optimize generated VM code (for example, when `index` is 0 or 1 for `push` and `pop` commands)
 
 ## Assembler
 
@@ -59,7 +70,7 @@ vmtranslator [-v] [-d] SOURCE
 - `-v`: Verbose output. Print translated assembly code to console.
 - `-d`: Debug mode. Write VM source lines as comments in assembly output.
 
-If *`SOURCE`* is a single VM file (for example, `MyProgram.vm`), the translator will output the assembly file in the same directory as *`SOURCE`* (for example, `Program.asm`). If *`SOURCE`* is a directory (for example, `MyProgram`), the translator will gather and translate each VM file under the directory and output the assembly file under the directory (for example, `MyProgram/MyProgram.asm`).
+If *`SOURCE`* is a single VM file (for example, `MyProgram.vm`), the translator will output the assembly file in the same directory as *`SOURCE`* (for example, `Program.asm`). If *`SOURCE`* is a directory (for example, `MyProgram`), the translator will gather and translate each VM file in the directory and output the assembly file in the directory (for example, `MyProgram/MyProgram.asm`).
 
 ### Description
 
@@ -79,7 +90,7 @@ The main program drives the entire translation using the other 3 modules. It has
 
 - CMake 3.20 or later
 - A C++ compiler supporting at least C++17
-- A Java runtime environment that can run nand2tetris's CPU emulator (used in testing)
+- A Java runtime environment that can run nand2tetris's CPU emulator (used in a portion of tests)
 
 #### Build
 
